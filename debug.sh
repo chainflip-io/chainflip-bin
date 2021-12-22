@@ -22,10 +22,13 @@ cat /etc/systemd/system/chainflip-node.service >> $debugLog
 printDivider
 
 # Tail the files and output to the debug log
-tail -100 $nodeLog >> $debugLog
+tail -n 100 $nodeLog >> $debugLog
 printDivider
-tail -100 $engineLog >> $debugLog
+tail -n 100 $engineLog >> $debugLog
 printDivider
 
 # Print engine config but delete sensitive information
 cat $engineConfig  | grep -v node_endpoint >> $debugLog
+
+echo "Please send the contents of $debugLog to a Chainflip Labs member in Discord."
+echo "Run: cat $debugLog"
