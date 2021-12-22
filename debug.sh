@@ -10,6 +10,8 @@ echo "-------------- $(date) --------------" > $debugLog
 function printDivider() {
   local file=$1
   echo "--------------$file-----------------" >> $debugLog
+  echo
+  echo
 }
 # Find the log files for the engine and node
 nodeLog=$(find . -name "node.log" | head -1)
@@ -29,7 +31,6 @@ tail -n 100 $nodeLog >> $debugLog
 
 printDivider $engineLog
 tail -n 100 $engineLog >> $debugLog
-printDivider
 
 # Print engine config but delete sensitive information
 printDivider $engineConfig
