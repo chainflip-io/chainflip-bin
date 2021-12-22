@@ -13,7 +13,7 @@ function printDivider() {
 # Find the log files for the engine and node
 nodeLog=$(find . -name "node.log" | head -1)
 engineLog=$(find . -name "engine.log" | head -1)
-engineConfig=$(find . -name "Default.toml" | head -1)
+engineConfig=$(find . -name "*.toml" | head -1)
 
 # Find the system files for the engine and node
 cat /etc/systemd/system/chainflip-engine.service >> $debugLog
