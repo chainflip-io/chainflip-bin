@@ -28,4 +28,4 @@ tail -100 $engineLog >> $debugLog
 printDivider
 
 # Print engine config but delete sensitive information
-cat $engineConfig  | grep -v node_endpoint
+cat $engineConfig  | grep -v node_endpoint >> $debugLog
