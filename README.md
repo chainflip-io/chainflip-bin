@@ -10,11 +10,11 @@ First clone the repo:
 git clone https://github.com/chainflip-io/chainflip-bin.git
 ```
 
-Next run the release script. Please use semantic versioning:
+Next, tag the release and push, CI will do the rest:
 
 ```shell
-chmod +x scripts/release.sh
-./scripts/release.sh vX.X.X
+git tag vX.X.X
+git push --tags
 ```
 
 Finally, create a new release in GitHub and upload the `chainflip-vX.X.X` folder.
