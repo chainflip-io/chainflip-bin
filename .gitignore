@@ -1,0 +1,4 @@
+chainflip-*
+!bin/*
+chainflip.tar.gz
+.idea
