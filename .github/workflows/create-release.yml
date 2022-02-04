@@ -16,15 +16,15 @@ jobs:
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
           chmod +x scripts/*
-          ./scripts/release.sh ${{ github.ref }}
+          ./scripts/release.sh ${{ github.ref_name }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}-soundcheck
-          release_name: 🎹 ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}-soundcheck
+          release_name: 🎹 ${{ github.ref_name }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
