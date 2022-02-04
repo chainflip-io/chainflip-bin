@@ -1,3 +1,3 @@
-mv ~/Downloads/chainflip-engine .
-mv ~/Downloads/chainflip-node .
-mv ~/Downloads/chainflip-cli .
+mv ~/Downloads/chainflip-engine bin
+mv ~/Downloads/chainflip-node bin
+mv ~/Downloads/chainflip-cli bin
