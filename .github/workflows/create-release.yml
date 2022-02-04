@@ -3,12 +3,6 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-    inputs:
-      network:
-        description: 'Which network to release binaries for'
-        type: string
-        required: true
-        default: 'soundcheck'
 
 name: Upload Release Asset
 
@@ -29,7 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}-${{ github.event.inputs.network }}
+          tag_name: ${{ github.ref }}-soundcheck
           release_name: 🎹 ${{ github.ref }}
           draft: false
           prerelease: false
