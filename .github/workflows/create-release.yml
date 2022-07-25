@@ -1,39 +1,50 @@
 on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: The tag to release
+        type: string
+        required: true
 
 name: Upload Release Asset
 
+env:
+  DOCUMENTATION_URL: https://docs.chainflip.io/paradise-validator-documentation/
 jobs:
   build:
     name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build project # This would actually build your project, using zip for an example artifact
+        uses: actions/checkout@v3
+
+      - name: Create release directory
         run: |
           chmod +x scripts/*
           ./scripts/release.sh ${{ github.ref_name }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}-soundcheck
-          release_name: 🚨 ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          release_name: 🏝 Paradise - ${{ github.ref_name }}
           draft: false
           prerelease: false
+          body: |
+            ## Chainflip Protocol ${{ github.ref_name }}
+            This release contains all binaries for the ${{ github.ref_name }} release.
+            For set up instructions, [click here](${{ env.DOCUMENTATION_URL }}). 
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./chainflip.tar.gz
           asset_name: chainflip.tar.gz
           asset_content_type: application/gzip
