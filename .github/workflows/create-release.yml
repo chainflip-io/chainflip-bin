@@ -6,13 +6,13 @@ on:
         type: string
         required: true
 
-name: Create Release
+name: Create Release - ${{ inputs.tag }}
 
 env:
   DOCUMENTATION_URL: https://docs.chainflip.io/paradise-validator-documentation/
 jobs:
   build:
-    name: Upload Release Asset
+    name: ${{ inputs.tag }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,7 +21,7 @@ jobs:
       - name: Create release directory
         run: |
           chmod +x scripts/*
-          ./scripts/release.sh ${{ github.ref_name }}
+          ./scripts/release.sh ${{ inputs.tag }}
 
       - name: Create Release
         id: create_release
@@ -29,13 +29,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: 🏝 Paradise - ${{ github.ref_name }}
+          tag_name: ${{ inputs.tag }}
+          release_name: 🏝 Paradise - ${{ inputs.tag }}
           draft: false
           prerelease: false
           body: |
-            ## Chainflip Protocol ${{ github.ref_name }}
-            This release contains all binaries for the ${{ github.ref_name }} release.
+            ## Chainflip Protocol ${{ inputs.tag }}
+            This release contains all binaries for the ${{ inputs.tag }} release.
             For set up instructions, [click here](${{ env.DOCUMENTATION_URL }}). 
 
       - name: Upload Release Asset
