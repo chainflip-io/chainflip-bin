@@ -6,13 +6,13 @@ on:
         type: string
         required: true
 
-name: Create Release - ${{ inputs.tag }}
+name: Create Release
 
 env:
   DOCUMENTATION_URL: https://docs.chainflip.io/paradise-validator-documentation/
 jobs:
   build:
-    name: ${{ inputs.tag }}
+    name: "Releasing - ${{ inputs.tag }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
