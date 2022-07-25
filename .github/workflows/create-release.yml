@@ -6,7 +6,7 @@ on:
         type: string
         required: true
 
-name: Upload Release Asset
+name: Create Release
 
 env:
   DOCUMENTATION_URL: https://docs.chainflip.io/paradise-validator-documentation/

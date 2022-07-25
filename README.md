@@ -4,20 +4,17 @@ Welcome to our first public repo!! Here we release all our new binaries. It does
 
 ## 🕊 Releasing new binary
 
-First clone the repo:
+Head to the `Actions` tab and click on the "Create Release" workflow.
 
-```shell
-git clone https://github.com/chainflip-io/chainflip-bin.git
+Enter the tag you want to release following the format of:
+
+```text
+chainflip-vX.X.X
 ```
 
-Next run the release script. Please use semantic versioning:
+Then click "Run workflow".
 
-```shell
-chmod +x scripts/release.sh
-./scripts/release.sh vX.X.X
-```
-
-Finally, create a new release in GitHub and upload the `chainflip-vX.X.X` folder.
+Verify the release was successful from the `Releases` tab.
 
 ## 🐛 Sending DEBUG output to the Chainflip Labs team
 
