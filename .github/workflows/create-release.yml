@@ -16,7 +16,7 @@ env:
   DOCUMENTATION_URL: https://docs.chainflip.io/paradise-validator-documentation/
 jobs:
   build:
-    name: "Releasing - ${{ inputs.tag }}"
+    name: "Releasing - ${{ inputs.tag }} - ${{ inputs.build_num }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
