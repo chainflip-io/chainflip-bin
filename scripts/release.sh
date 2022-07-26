@@ -7,7 +7,7 @@ release() {
   mkdir "$TAG"
 
   echo "Copying files to release directory: $TAG"
-  cp bin/* "$TAG"
+  cp chainflip-* "$TAG"
 
   echo "Creating tarball: $TAG.tar.gz"
   tar -czvf chainflip.tar.gz "$TAG"
