@@ -5,6 +5,10 @@ on:
         description: The tag to release
         type: string
         required: true
+      build_num:
+        description: The build number of the 'test-single-node' job.
+        type: string
+        required: true
 
 name: Create Release
 
@@ -17,6 +21,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Download binaries
+        run: |
+          curl -s ${{ secrets.CIRCLE_BASE_URL }}/${{ inputs.build_num }}/artifacts?circle-token=${{ secrets.CIRCLE_TOKEN }} | grep -o 'https://[^"]*' > artifacts.txt
+          <artifacts.txt xargs -P4 -I % curl -sJLO -H 'Circle-Token: ${{ secrets.CIRCLE_TOKEN }}' %
 
       - name: Create release directory
         run: |
